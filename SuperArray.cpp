@@ -29,7 +29,6 @@ SuperArray::~SuperArray()
 	delete[] arr;
 }
 
-
 /*!
  * Convert int array to string.
  * Note: You do not need to modify this function
@@ -68,4 +67,28 @@ int &SuperArray::operator[](const int index)
 	// Define your logic here
 	//
 	return arr[realIndex];
+}
+
+int SuperArray::getLowIndex() const
+{
+	return 0;
+	/*int small = arr[0];
+	for(int i = 1; i < capacity; i++)
+	{
+		int temp = arr[i];
+		if (temp < small)
+		{
+			small = temp;
+		}
+	}
+	return small;*/
+}
+int SuperArray::getHighIndex() const
+{
+	return capacity -1;
+}
+
+int SuperArray::length() const
+{
+	return capacity;
 }

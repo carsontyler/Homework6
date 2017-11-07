@@ -75,7 +75,6 @@ TEST_CASE("Testing SuperArray class Regular indexes")
         INFO("Test #1) Test Constructor FAILED");
         REQUIRE(arrayToString(sa) == "20 21 22 23 24");
     }
-    /*
 	SECTION("Test #2) Test low index")
 	{
 	    INFO("Test #2) Test low index FAILED");
@@ -95,7 +94,7 @@ TEST_CASE("Testing SuperArray class Regular indexes")
 	{
 	    INFO("Test #5) Test valid index member FAILED");
 		REQUIRE(sa[0] == 20);
-	}
+	}/*
     // This test requires to test an exception 
 	SECTION("Test #6) Test invalid index members (too low)")
 	{
@@ -108,7 +107,7 @@ TEST_CASE("Testing SuperArray class Regular indexes")
 		REQUIRE_THROWS_WITH(sa[9], "Invalid index request, too high");
 	}*/
 }
-/*
+
 TEST_CASE("Testing SuperArray class with super range")
 {
     INFO("Testing SuperArray class with super range");
@@ -124,7 +123,7 @@ TEST_CASE("Testing SuperArray class with super range")
     {
         INFO("Test #8) Test Constructor FAILED");
         REQUIRE(arrayToString(sa) == "105 106 107 108 109 110 111 112 113 114");
-    }
+    }/*
     SECTION("Test #9) Test low index")
     {
         INFO("Test #9) Test low index FAILED");
@@ -155,8 +154,9 @@ TEST_CASE("Testing SuperArray class with super range")
     {
         INFO("Test #14 Test valid index member (too high) FAILED");
         REQUIRE_THROWS_WITH(sa[19], "Invalid index request, too high");
-    }
+    }*/
 }
+/*
 TEST_CASE("Testing SuperArray class Resize Feature")
  {
     INFO("Testing SuperArray class with super range");

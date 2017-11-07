@@ -24,8 +24,9 @@ public:
 	virtual ~SuperArray(); /* destructor */
 
 	/* Setter and Getters */
-	//int getLowIndex() const;
-	//int getHighIndex() const;
+	int getLowIndex() const;
+	int getHighIndex() const;
+	int length() const;
 
 	//unsigned int length() const;
 	//void resize(const int begIndex, const unsigned int capacity);
