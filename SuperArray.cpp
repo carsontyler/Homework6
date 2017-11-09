@@ -19,7 +19,7 @@ SuperArray::SuperArray(const int begIndex, const unsigned int capacity)
 	arr = new int[capacity];
 	SuperArray::capacity = capacity;
 	SuperArray::lowIndex = begIndex;
-	SuperArray::highIndex = begIndex+capacity-1;
+	SuperArray::highIndex = begIndex + capacity - 1;
 	// Other info below
 }
 
@@ -56,29 +56,15 @@ unsigned int SuperArray::length() const
 int &SuperArray::operator[](const int index)
 {
 	int realIndex = index - lowIndex;
+	/*if (realIndex < lowIndex)
+		throw "Invalid index request, too low";
+	if (realIndex > highIndex)
+		throw "Invalid index request, too high";*/
 
-	/*try
-    {
-        arr[realIndex];
-    }
-    catch (int e)
-    {
-        if(e > highIndex)
-        {
-            cout << "Invalid index request, too high";
-        }
-        if(e < lowIndex)
-        {
-            cout << "Invalid index requeset, too low";
-        }
-    }*/
 	return arr[realIndex];
 }
 // 		REQUIRE_THROWS_WITH(sa[9], "Invalid index request, too high");
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
 
 
 /*!
@@ -114,4 +100,16 @@ string arrayToString(const SuperArray& obj)
 		str.clear();            // str is all whitespace
 
 	return str;
+}
+
+void SuperArray::resize(const int begIndex, const int highIndex)
+{
+	//SuperArray::capacity = highIndex - begIndex;
+	lowIndex = begIndex;
+	SuperArray::highIndex = highIndex - 1;
+	/*for (int i = SuperArray::lowIndex; i < SuperArray::highIndex; i++)
+	{
+
+	}*/
+
 }
