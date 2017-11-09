@@ -56,14 +56,14 @@ unsigned int SuperArray::length() const
 int &SuperArray::operator[](const int index)
 {
 	int realIndex = index - lowIndex;
-	/*if (realIndex < lowIndex)
-		throw "Invalid index request, too low";
-	if (realIndex > highIndex)
-		throw "Invalid index request, too high";*/
+
+	if (index < lowIndex)
+		throw("Invalid index request, too low");
+	if (index > highIndex)
+		throw("Invalid index request, too high");
 
 	return arr[realIndex];
 }
-// 		REQUIRE_THROWS_WITH(sa[9], "Invalid index request, too high");
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
