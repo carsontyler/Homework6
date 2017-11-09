@@ -3,6 +3,7 @@
 // Copyright (c) 2017 WSU
 //
 
+#include <cstring>
 #include "SuperArray.h"
 /*!
  * Constructor
@@ -102,14 +103,25 @@ string arrayToString(const SuperArray& obj)
 	return str;
 }
 
-void SuperArray::resize(const int begIndex, const int highIndex)
+void SuperArray::resize(const int begIndex, const unsigned int capacity)
 {
-	//SuperArray::capacity = highIndex - begIndex;
-	lowIndex = begIndex;
-	SuperArray::highIndex = highIndex - 1;
-	/*for (int i = SuperArray::lowIndex; i < SuperArray::highIndex; i++)
-	{
+    int *p = new int[capacity];
 
-	}*/
+    /*for(int i = begIndex; i < lowIndex; i++)
+    {
+        p[i] = '0';
+		//cout << p[i];
+    }
+    for(int i = lowIndex; i <= highIndex; i++)
+    {
+        p[i] = arr[i];
+    }*/
+
+	*arr = *p;
+	delete[] p;
+
+    lowIndex = begIndex;
+    SuperArray::capacity = capacity;
+	highIndex = begIndex + capacity - 1;
 
 }
