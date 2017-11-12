@@ -1,4 +1,3 @@
-
 // File: SuperArray
 // Created by Hugo Valle on 10/31/2017.
 // Copyright (c) 2017 WSU
@@ -6,12 +5,6 @@
 
 #include <cstring>
 #include "SuperArray.h"
-#include <stdio.h>
-#include <iostream>
-#include <vector>
-//#include <cstdint>
-#include <cstring>
-
 /*!
  * Constructor
  * @param begIndex User's low index
@@ -112,87 +105,63 @@ string arrayToString(const SuperArray& obj)
 
 void SuperArray::resize(const int begIndex, const unsigned int capacity2)
 {
-    int *p = new int[capacity2];
-    
-	//for(int i = 0; i < begIndex; i++) *(p+i) = 0;
-    int templow = lowIndex, tempHigh = highIndex;
-    cout << "low and high:  " << lowIndex << ","<< highIndex << "," << capacity2 << endl ;
-    for(int i = 0; i < lowIndex; i++) *(p+i) = 0;
-    if(begIndex < 0) 
+	/*int *p = new int[capacity];
+    for(int i = begIndex; i < lowIndex; i++)
     {
-        templow = (lowIndex-(begIndex));
-        tempHigh = (highIndex-(begIndex));
+        p[i] = '0';
+		//cout << p[i];
     }
-    else 
+    for(int i = lowIndex; i <= highIndex; i++)
     {
-        templow = (lowIndex-(begIndex));
-        tempHigh = (highIndex-(begIndex));
+        p[i] = arr[i];
     }
-    for(int i = templow, j=0; i <= tempHigh; i++, j++)
-    {
-        p[i] = arr[j];
+	*arr = *p;
+	delete[] p;
+	cout << lowIndex << " = LowIndex; " << highIndex << " = HighIndex; " << capacity << " = Capacity.";
+	for(int i = lowIndex, j = 0; i <= highIndex; i++, j++)
+	{
+		p[i] = arr[i];
+	}
+	lowIndex = begIndex;
+	/*highIndex = begIndex + capacity - 1;
+	SuperArray::capacity = capacity;
+	*arr = *p;
+	delete[] p;*/
 
-    }
-    for(int i = 0; i < capacity2; i++)*(arr+i) = *(p+i);
-    //memcpy(p, arr, capacity2);
-    cout <<endl;
-    cout << p[5] << endl;
-    for(int i = 0; i < capacity2; i++) cout << *(p+i) << ",";
-    cout << endl;
-    //delete[] arr;
-    *arr = *p;
-    cout << "Andrew"  << endl;
-    for(int i = 0; i < capacity2; i++) cout << *(arr+i) << ",";
+	int *p = new int[capacity2];
+
+	int templow = lowIndex, tempHigh = highIndex;
+	//cout << endl << endl << "low and high:  " << lowIndex << ","<< highIndex << "," << capacity2 << endl ;
+	for(int i = 0; i < lowIndex; i++) *(p+i) = 0;
+
+	templow = (lowIndex-(begIndex));
+	tempHigh = (highIndex-(begIndex));
+
+	for(int i = templow, j=0; i <= tempHigh; i++, j++)
+	{
+		p[i] = arr[j];
+	}
+
+	for(int i = 0; i < capacity2; i++)*(arr+i) = *(p+i);
+	//memcpy(p, arr, capacity2);
+
+	//cout << "P[5] = " << p[5] << endl;
+	//cout << "P = ";
+	//for(int i = 0; i < capacity2; i++)
+	//{
+	//	cout << *(p+i) << ",";
+	//}
+	//cout << endl;
+	*arr = *p;
+	//cout << "Arr = ";
+	//for(int i = 0; i < capacity2; i++)
+	//{
+	//	cout << *(arr+i) << ",";
+	//}
 	delete[] p;
-	cout << "Andrew" << endl;
-/*	    int *p = new int[capacity2];
-    int templow = lowIndex, tempHigh = highIndex;
-    cout << "low and high:  " << lowIndex << ","<< highIndex << endl ;
-    //for(int i = 0; i < lowIndex; i++) *(p+i) = 0;
-    if(begIndex < 0) 
-    {
-        templow = (lowIndex-(begIndex));
-        tempHigh = (highIndex-(begIndex));
-    }
-    for(int i = templow, j=0; i <= tempHigh; i++, j++) p[i] = arr[j];
-    //for(int i = 0; i < capacity2; i++)*(arr+i) = *(p+i);
-    for(int i = 0; i < capacity2; i++) cout << *(p+i) << ",";
-    
-    *arr = *p;
-    cout << endl << endl;
-    for(int i = 0; i < capacity2; i++) cout << *(arr+i) << ",";
-    cout << endl << endl;
-	delete[] p;
-*/	
-    /*int *p = new int[capacity2];
-	//for(int i = 0; i < begIndex; i++) *(p+i) = 0;
-    int templow = lowIndex, tempHigh = highIndex;
-    if(begIndex < 0) 
-    {
-        templow = (lowIndex-(begIndex));
-        tempHigh = (highIndex-(begIndex));
-    }
-    //cout << endl << *(arr) << endl;
-    for(int i = templow, j=0; i <= tempHigh; i++)
-    {
-        *(p+i) = *(arr+j);
-        j++;
-    }
-    //for(int i = 0; i < capacity2; i++)*(arr+i) = *(p+i);
-    //memcpy(p, arr, capacity2);
-    //cout <<endl;
-    //cout << p[3] << endl;
-    for(int i = 0; i < capacity2; i++) cout << *(p+i) << ",";
-    cout << endl;
-    *arr = *p;
-    cout << endl << *(arr) << endl;
-    
-    //delete[] p;
-	cout << "Andrew" << endl;*/
-    lowIndex = begIndex;
-    SuperArray::capacity = capacity2;
+
+	lowIndex = begIndex;
+	SuperArray::capacity = capacity2;
 	highIndex = begIndex + capacity2 - 1;
-	cout << "Andrew" << endl;
-
+	//cout << endl << "End function" << endl;
 }
-
