@@ -1,6 +1,11 @@
 #define CATCH_CONFIG_MAIN  // This tells Catch to provide a main() - only do this in one cpp file
 #include "catch.hpp"
 #include "SuperArray.h"
+#include <stdio.h>
+#include <iostream>
+#include <vector>
+//#include <cstdint>
+#include <cstring>
 
 /*{  ASSERTION MACROS:
  *  REQUIRE( expression ) and  
@@ -155,7 +160,7 @@ TEST_CASE("Testing SuperArray class with super range")
         REQUIRE_THROWS_WITH(sa[19], "Invalid index request, too high");
     }
 }
-TEST_CASE("Testing SuperArray class Resize Feature")
+/*TEST_CASE("Testing SuperArray class Resize Feature")
 {
     INFO("Testing SuperArray class with super range");
     int low = 5;
@@ -166,33 +171,37 @@ TEST_CASE("Testing SuperArray class Resize Feature")
         sa[i] = i + 100;
     }
     // Test Resize now
-    /*low = 3;
+    low = 3;
     high = 15;
     sa.resize(low, high);
-	*/SECTION("Test #15) Test low index")
+	SECTION("Test #15) Test low index")
 	{
 	    INFO("Test #15) Test low index FAILED");
 		REQUIRE(sa.getLowIndex() == low);
 	}
+	std::cout << endl << endl << "sa[5]: " << sa[5] << endl << endl;
 	SECTION("Test #16) Test high index")
 	{
 	    INFO("Test #16) Test high index FAILED");
 		REQUIRE(sa.getHighIndex() == low + high - 1);
 	}
+	std::cout << endl << endl << "sa[5]: " << sa[5] << endl << endl;
 	SECTION("Test #17) Test length")
 	{
 	    INFO("Test #17) Test length FAILED");
 		REQUIRE(sa.length() == 15);
 	}
-	/*SECTION("Test #18) Test valid index member")
+	std::cout << endl << endl << "sa[5]: " << sa[14] << endl << endl;
+	SECTION("Test #18) Test valid index member")
 	{
 	    INFO("Test #18) Test valid index member FAILED");
         REQUIRE(sa[5] == 105);
         REQUIRE(sa[14] == 114);
-	}*/
+	}
     // Update values and test them
     sa[3] = 1;
     sa[14] = 2;
+    std::cout << endl << endl << "sa[5]: " << sa[14] << endl << endl;
 	SECTION("Test #19) Test valid new values")
 	{
 	    INFO("Test #19) Test valid new FAILED");
@@ -200,36 +209,41 @@ TEST_CASE("Testing SuperArray class Resize Feature")
         REQUIRE(sa[14] == 2);
 	}
     // This test requires to test an exception
-	SECTION("Test #20) Test invalid index members (too low)")
+    std::cout << endl << endl << "sa[5]: " << sa[14] << endl << endl;
+	/*SECTION("Test #20) Test invalid index members (too low)")
 	{
 	    INFO("Test #20 Test valid index member (too low) FAILED");
 		REQUIRE_THROWS_WITH(sa[2], "Invalid index request, too low");
-	}
-	SECTION("Test #21) Test invalid index members (too high)")
+	}*/
+	/*SECTION("Test #21) Test invalid index members (too high)")
  	{
 	    INFO("Test #21 Test valid index member (too high) FAILED");
 		REQUIRE_THROWS_WITH(sa[19], "Invalid index request, too high");
-	}
-}
+	}*/
+//}
 TEST_CASE("Testing SuperArray class Resize Feature Negative Index")
 {
     INFO("Testing SuperArray class Resize Feature Negative Index");
+    std::cout << endl << endl << "sa[5]: sdfasdfasdfasdfsdf" << endl << endl;
     int low = 5;
     int high = 15;
     SuperArray sa(low, high);
+    
     for (int i = low; i < high; i++)
     {
         sa[i] = i + 100;
     }
     // Test Resize now
-    /*low = -4;
+    low = -4;
     high = 23;
     sa.resize(low, high);
-    */SECTION("Test #22) Test low index")
+    std::cout << endl << endl << "sa[5]: " << sa[5] << endl << endl;
+    SECTION("Test #22) Test low index")
     {
         INFO("Test #22) Test low index FAILED");
         REQUIRE(sa.getLowIndex() == low);
     }
+    std::cout << endl << endl << "sa[5]: " << sa[14] << endl << endl;
     SECTION("Test #23) Test high index")
     { 
         INFO("Test #23) Test high index FAILED");
@@ -239,13 +253,14 @@ TEST_CASE("Testing SuperArray class Resize Feature Negative Index")
     { 
         INFO("Test #24) Test length FAILED");
         REQUIRE(sa.length() == 23);
-    }
+    }}/*
     SECTION("Test #25) Test valid index member")
     {
         INFO("Test #25) Test valid index member FAILED");
         REQUIRE(sa[5] == 105);
         REQUIRE(sa[14] == 114);
-    }
+    }}
+/*    std::cout << endl << endl << "sa[5]: " << sa[3] << endl << endl;
     // Update values and test them
     sa[3] = 1;
     sa[14] = 2;
@@ -350,4 +365,4 @@ TEST_CASE("Testing SuperArray 1 element")
         INFO("Test #39) Test valid index member (too high) FAILED");
         REQUIRE_THROWS_WITH(sa[4], "Invalid index request, too high");
     }
-}
+}*/
