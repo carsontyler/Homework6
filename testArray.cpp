@@ -3,27 +3,27 @@
 #include "SuperArray.h"
 
 /*{  ASSERTION MACROS:
- *  REQUIRE( expression ) and
- *  CHECK( expression )  Evaluates the
- *      expression and records the result. If an exception is thrown
- *      it is caught, reported, and counted as a failure. These are
+ *  REQUIRE( expression ) and  
+ *  CHECK( expression )  Evaluates the 
+ *      expression and records the result. If an exception is thrown 
+ *      it is caught, reported, and counted as a failure. These are 
  *      the macros you will use most of the time
- *  REQUIRE_FALSE( expression ) and
- *  CHECK_FALSE( expression ) Evaluates the expression and records the logical NOT of the result. If
- *      an exception is thrown it is caught, reported, and counted
- *      as a failure. (these forms exist as a workaround for the
+ *  REQUIRE_FALSE( expression ) and  
+ *  CHECK_FALSE( expression ) Evaluates the expression and records the logical NOT of the result. If 
+ *      an exception is thrown it is caught, reported, and counted 
+ *      as a failure. (these forms exist as a workaround for the 
  *      fact that ! prefixed expressions cannot be decomposed).
- *
+ * 
  *  EXCEPTIONS MACROS:
-*   REQUIRE_NOTHROW( expression ) and
+*   REQUIRE_NOTHROW( expression ) and  
 *   CHECK_NOTHROW( expression )
 *      Expects that no exception is thrown during evaluation of the expression.
 *
-*   REQUIRE_THROWS( expression ) and
+*   REQUIRE_THROWS( expression ) and 
 *   CHECK_THROWS( expression )
 *      Expects that an exception (of any type) is be thrown during evaluation of the expression.
 *
-*   REQUIRE_THROWS_AS( expression, exception type ) and
+*   REQUIRE_THROWS_AS( expression, exception type ) and 
 *   CHECK_THROWS_AS( expression, exception type )
 *      Expects that an exception of the specified type is thrown during evaluation of the expression. Note that the exception type is extended with const& and you should not include it yourself.
 *
@@ -40,24 +40,24 @@
 *      Expects that exception of exception type is thrown and it matches provided matcher (see next section for Matchers).
  *
  *  LOGGING MACROS:
- *  INFO( message expression )  The message is logged to a buffer,
- *      but only reported with the next assertion that is logged.
- *      This allows you to log contextual information in case of failures
- *      which is not shown during a successful test run (for the console
- *      reporter, without -s). Messages are removed from the buffer
+ *  INFO( message expression )  The message is logged to a buffer, 
+ *      but only reported with the next assertion that is logged. 
+ *      This allows you to log contextual information in case of failures 
+ *      which is not shown during a successful test run (for the console 
+ *      reporter, without -s). Messages are removed from the buffer 
  *      at the end of their scope, so may be used, for example, in loops.
  *
- *  WARN( message expression ) The message is always reported but
+ *  WARN( message expression ) The message is always reported but 
  *      does not fail the test.
  *
  *  FAIL( message expression ) The message is reported and the test case fails.
  *
  *  FAIL_CHECK( message expression ) AS FAIL, but does not abort the test
  *
- *  CAPTURE( expression )  Sometimes you just want to log the name and
- *      value of a variable. While you can easily do this with the INFO macro,
- *      above, as a convenience the CAPTURE macro handles the stringising of
- *      the variable name for you (actually it works with any expression,
+ *  CAPTURE( expression )  Sometimes you just want to log the name and 
+ *      value of a variable. While you can easily do this with the INFO macro, 
+ *      above, as a convenience the CAPTURE macro handles the stringising of 
+ *      the variable name for you (actually it works with any expression, 
  *      not just variables).
  * } */
 TEST_CASE("Testing SuperArray class Regular indexes")
@@ -83,7 +83,7 @@ TEST_CASE("Testing SuperArray class Regular indexes")
 	SECTION("Test #3) Test high index")
 	{
 	    INFO("Test #3) Test high index FAILED");
-		REQUIRE(sa.getHighIndex() == low + high - 1);
+		REQUIRE(sa.getHighIndex() == high - 1);
 	}
 	SECTION("Test #4) Test length")
 	{
@@ -95,7 +95,7 @@ TEST_CASE("Testing SuperArray class Regular indexes")
 	    INFO("Test #5) Test valid index member FAILED");
 		REQUIRE(sa[0] == 20);
 	}
-    // This test requires to test an exception
+    // This test requires to test an exception 
 	SECTION("Test #6) Test invalid index members (too low)")
 	{
 	    INFO("Test #6) Test valid index member (too low) FAILED");
@@ -107,6 +107,7 @@ TEST_CASE("Testing SuperArray class Regular indexes")
 		REQUIRE_THROWS_WITH(sa[9], "Invalid index request, too high");
 	}
 }
+
 TEST_CASE("Testing SuperArray class with super range")
 {
     INFO("Testing SuperArray class with super range");
@@ -155,9 +156,11 @@ TEST_CASE("Testing SuperArray class with super range")
         REQUIRE_THROWS_WITH(sa[19], "Invalid index request, too high");
     }
 }
+
 TEST_CASE("Testing SuperArray class Resize Feature")
 {
-    INFO("Testing SuperArray class with Resize Feature");
+
+    INFO("Testing SuperArray class with super range");
     int low = 5;
     int high = 15;
     SuperArray sa(low, high);
@@ -165,6 +168,7 @@ TEST_CASE("Testing SuperArray class Resize Feature")
     {
         sa[i] = i + 100;
     }
+
     // Test Resize now
     low = 3;
     high = 15;
@@ -190,6 +194,7 @@ TEST_CASE("Testing SuperArray class Resize Feature")
         REQUIRE(sa[5] == 105);
         REQUIRE(sa[14] == 114);
 	}
+
     // Update values and test them
     sa[3] = 1;
     sa[14] = 2;
@@ -208,9 +213,10 @@ TEST_CASE("Testing SuperArray class Resize Feature")
 	SECTION("Test #21) Test invalid index members (too high)")
  	{
 	    INFO("Test #21 Test valid index member (too high) FAILED");
-		REQUIRE_THROWS_WITH(sa[21], "Invalid index request, too high");
+		REQUIRE_THROWS_WITH(sa[19], "Invalid index request, too high");
 	}
 }
+
 TEST_CASE("Testing SuperArray class Resize Feature Negative Index")
 {
     INFO("Testing SuperArray class Resize Feature Negative Index");
@@ -223,20 +229,20 @@ TEST_CASE("Testing SuperArray class Resize Feature Negative Index")
     }
     // Test Resize now
     low = -4;
-    //high = 23;
-    //sa.resize(low, high);
+    high = 23;
+    sa.resize(low, high);
     SECTION("Test #22) Test low index")
     {
         INFO("Test #22) Test low index FAILED");
-        REQUIRE(sa.getLowIndex() == 5);
+        REQUIRE(sa.getLowIndex() == -4);
     }
     SECTION("Test #23) Test high index")
-    {
+    { 
         INFO("Test #23) Test high index FAILED");
-        REQUIRE(sa.getHighIndex() == low + high - 1);
+        REQUIRE(sa.getHighIndex() == 18);
     }
     SECTION("Test #24) Test length")
-    {
+    { 
         INFO("Test #24) Test length FAILED");
         REQUIRE(sa.length() == 23);
     }
@@ -251,7 +257,7 @@ TEST_CASE("Testing SuperArray class Resize Feature Negative Index")
     sa[14] = 2;
     sa[-4] = 1234;
     SECTION("Test #26) Test valid new values")
-    {
+    { 
         INFO("Test #26) Test valid new FAILED");
         REQUIRE(sa[3] == 1);
         REQUIRE(sa[14] == 2);
@@ -299,7 +305,7 @@ TEST_CASE("Testing SuperArray Offseting array")
 	    INFO("Test #32) Test length FAILED");
 		REQUIRE(sa.length() == 4);
 	}
-    // This test requires to test an exception
+    // This test requires to test an exception 
 	SECTION("Test #33) Test invalid index members (too low)")
 	{
 	    INFO("Test #33) Test valid index member (too low) FAILED");
@@ -320,26 +326,26 @@ TEST_CASE("Testing SuperArray 1 element")
     sa[3] = 1111;;
 
     SECTION("Test #35) Test Constructor")
-    {
+    { 
         INFO("Test #35) Test Constructor FAILED");
         REQUIRE(arrayToString(sa) == "1111");
     }
     SECTION("Test #36) Test low index")
-    {
+    { 
         INFO("Test #36) Test low index FAILED");
         REQUIRE(sa.getLowIndex() == low);
     }
     SECTION("Test #36) Test high index")
-    {
+    { 
         INFO("Test #36) Test high index FAILED");
         REQUIRE(sa.getHighIndex() == low);
     }
     SECTION("Test #37) Test length")
-    {
+    { 
         INFO("Test #37) Test length FAILED");
         REQUIRE(sa.length() == 1);
     }
-    // This test requires to test an exception
+    // This test requires to test an exception 
     SECTION("Test #38) Test invalid index members (too low)")
     {
         INFO("Test #38) Test valid index member (too low) FAILED");
