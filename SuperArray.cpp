@@ -24,7 +24,6 @@ SuperArray::SuperArray(const int begIndex, const unsigned int capacity)
     // Other info below
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /*!
 * Obtaining The low index of the super array
 * @param returning the low index
@@ -65,17 +64,14 @@ int &SuperArray::operator[](const int index)
 
     return arr[realIndex];
 }
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
 /*!
- * Class Destructor
+ * Class Destructor, destroyed the allocated memory for the array
  */
 SuperArray::~SuperArray()
 {
-    delete arr;
+    delete[] arr;
 }
-
 
 /*!
  * Convert int array to string.
@@ -101,25 +97,30 @@ string arrayToString(const SuperArray& obj)
 
     return str;
 }
-
+ /*!
+  * Resizes the current array to the given parameters
+  * @param begIndex Where the new array will begin
+  * @param capacity2 How large the array will be
+  */
 void SuperArray::resize(const int begIndex, const unsigned int capacity2)
 {
     int *p = new int[capacity2];
 
     int templow = lowIndex, tempHigh = highIndex;
-    for(int i = 0; i < lowIndex; i++) *(p+i) = 0;
-
     templow = (lowIndex-(begIndex));
-    tempHigh = (highIndex-(begIndex));
 
-    for(int i = templow, j=0; i <= tempHigh; i++, j++)
+    for(int i = 0; i < lowIndex; i++)
     {
-        p[i] = arr[j];
+        *(p+i) = 0;
     }
 
-    for(int i = 0; i < capacity2; i++)*(arr+i) = *(p+i);
+    for(int i = 0; i < SuperArray::capacity; i++)
+    {
+        p[templow+i]=arr[i];
+    }
 
-    delete[] p;
+    delete[] arr;
+    arr = p;
 
     lowIndex = begIndex;
     SuperArray::capacity = capacity2;
